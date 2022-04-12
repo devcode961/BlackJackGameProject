@@ -1,41 +1,29 @@
 package com.game.blackjack.model;
 
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import com.game.blackjack.Utilities;
+import java.util.ArrayDeque;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.Collections;
+
+
 
 public class Deck {
+
+    private ArrayDeque<String> deck = new ArrayDeque<>();
 
     public ArrayDeque<String> getDeck() {
         return deck;
     }
 
-    private ArrayDeque<String> deck = new ArrayDeque<>();
-
-
-    private final List<String> suiteList = Arrays.asList("C","D","S","H");
-
-    private final Map<String, Integer> cardFaceValueMap = Stream.of(new Object[][] {
-            { "2", 2 },
-            { "3", 3 },
-            { "4", 4 },
-            { "5", 5 },
-            { "6", 6 },
-            { "7", 7 },
-            { "8", 8 },
-            { "9", 9 },
-            { "10",10 },
-            { "A", 11 },//A for Ace
-            { "J", 10 },//J for Jack
-            { "Q", 10 },//Q fro Queen
-            { "K", 10},//K for King
-    }).collect(Collectors.toMap(data -> (String) data[0], data -> (Integer) data[1]));
-
     public  void initializeShuffledCardDeck() {
 
         List<String> cardList = new ArrayList<>();
 
-        Set<String> cardFaceValueSet = cardFaceValueMap.keySet();
+        Set<String> cardFaceValueSet = Utilities.cardFaceValueMap.keySet();
+
+        List<String> suiteList = Utilities.suiteList;
 
         StringBuilder cardEntry = new StringBuilder();
 
@@ -48,14 +36,8 @@ public class Deck {
         }
 
         Collections.shuffle(cardList);
-
         System.out.println("Initialized deck of cards : "+cardList);
-
-        //Collections.reverse(cardList);
-
         this.deck.addAll(cardList);
     }
-
-
 
 }

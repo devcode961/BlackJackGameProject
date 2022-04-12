@@ -5,6 +5,8 @@ import com.game.blackjack.model.Player;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,9 +15,11 @@ import java.util.stream.Stream;
 
 public class Utilities {
 
-    static final Logger logger = Logger.getLogger(Utilities.class.getName());
+    private static final Logger logger = Logger.getLogger(Utilities.class.getName());
 
-    private final static Map<String, Integer> cardFaceValueMap = Stream.of(new Object[][] {
+    public static final List<String> suiteList = Arrays.asList("C","D","S","H");
+
+    public final static Map<String, Integer> cardFaceValueMap = Stream.of(new Object[][] {
             { "2", 2 },
             { "3", 3 },
             { "4", 4 },
@@ -53,5 +57,13 @@ public class Utilities {
         }
         player.setCurrentHandValue(totalHandValue);
         return totalHandValue;
+    }
+
+    public static void printGameResult(Player sam, Player dealer){
+
+        String winnerName = (sam.isWinner()) ? sam.getPlayerName() : dealer.getPlayerName();
+        System.out.println(winnerName);
+        System.out.println(sam.getPlayerName()+": "+sam.getPlayerHand());
+        System.out.println(dealer.getPlayerName()+": "+dealer.getPlayerHand());
     }
 }

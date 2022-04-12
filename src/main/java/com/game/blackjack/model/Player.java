@@ -13,6 +13,8 @@ public class Player {
 
     private boolean isWinner;
 
+    private boolean isLoser;
+
     public String getPlayerName() {
         return playerName;
     }
@@ -45,13 +47,12 @@ public class Player {
         isWinner = winner;
     }
 
+    public boolean isLoser() { return isLoser; }
+
+    public void setLoser(boolean loser) { isLoser = loser; }
+
     @Override
     public String toString() {
-        return "Player{" +
-                "playerName='" + playerName + '\'' +
-                ", playerHand=" + playerHand +
-                ", currentHandValue=" + currentHandValue +
-                ", isWinner=" + isWinner +
-                '}';
+        return getPlayerName()+": "+getPlayerHand().toString();
     }
 }
