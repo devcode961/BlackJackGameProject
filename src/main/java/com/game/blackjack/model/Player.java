@@ -11,6 +11,8 @@ public class Player {
 
     private int currentHandValue;
 
+    private boolean isWinner;
+
     public String getPlayerName() {
         return playerName;
     }
@@ -33,5 +35,23 @@ public class Player {
 
     public void setCurrentHandValue(int currentHandValue) {
         this.currentHandValue = currentHandValue;
+    }
+
+    public boolean isWinner() {
+        return isWinner;
+    }
+
+    public void setWinner(boolean winner) {
+        isWinner = winner;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "playerName='" + playerName + '\'' +
+                ", playerHand=" + playerHand +
+                ", currentHandValue=" + currentHandValue +
+                ", isWinner=" + isWinner +
+                '}';
     }
 }
