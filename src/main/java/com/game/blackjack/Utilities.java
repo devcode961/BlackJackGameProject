@@ -47,8 +47,8 @@ public class Utilities {
     }
 
     public static int getHandValue(Player player){
-        int totalHandValue = player.getCurrentHandValue();
-        for(String card: player.getPlayerHand()){
+        int totalHandValue = 0;
+        for(String card : player.getPlayerHand()){
             totalHandValue+= cardFaceValueMap.get(card.substring(1));
         }
         player.setCurrentHandValue(totalHandValue);
