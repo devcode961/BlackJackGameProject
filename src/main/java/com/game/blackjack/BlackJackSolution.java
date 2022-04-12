@@ -4,16 +4,27 @@ import com.game.blackjack.game.BlackJackGame;
 import com.game.blackjack.model.Deck;
 import com.game.blackjack.model.Player;
 
+import java.util.ArrayDeque;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 public class BlackJackSolution
 {
     public static void main( String[] args )
     {
-        if(args.length==1){
-            Utilities.checkInputFileValid(args[0]);
+
+        ArrayDeque<String> cardDeck = new ArrayDeque<>();
+
+        if(args.length > 0){
+          cardDeck = Utilities.validateInputFileAndCreateDeck(args[0]);
         }
+
         Deck deck = new Deck();
 
-        deck.initializeShuffledCardDeck();
+        if(cardDeck.isEmpty())
+            deck.initializeShuffledCardDeck();
+        else
+            deck.setDeck(cardDeck);
 
         Player player1 = new Player();
         Player player2 = new Player();

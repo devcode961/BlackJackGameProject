@@ -17,6 +17,10 @@ public class Deck {
         return deck;
     }
 
+    public void setDeck(ArrayDeque<String> deck) {
+        this.deck = deck;
+    }
+
     public  void initializeShuffledCardDeck() {
 
         List<String> cardList = new ArrayList<>();
@@ -36,7 +40,7 @@ public class Deck {
         }
 
         Collections.shuffle(cardList);
-        System.out.println("Initialized deck of cards : "+cardList);
+        System.out.println("Initialized deck of cards from program: "+cardList);
         this.deck.addAll(cardList);
     }
 
