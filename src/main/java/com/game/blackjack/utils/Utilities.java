@@ -5,6 +5,7 @@ import com.game.blackjack.model.Player;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayDeque;
 import java.util.stream.Collectors;
@@ -29,21 +30,24 @@ public class Utilities {
                     count();
 
             if (listCardDeck.size() == STANDARD_DECK_SIZE && validCardCount == STANDARD_DECK_SIZE) {
-                System.out.println("Initialized deck of cards from input file\n CARD DECK : " + listCardDeck);
+                System.out.println("Initialized deck of cards from input file\n\nCARD DECK : " + listCardDeck + "\n\n");
                 cardDeck.addAll(listCardDeck);
             } else {
-                System.out.println("One/More card values in input file not valid.Initializing deck of cards within program");
+                System.out.println("Could not initialize deck from input file.Reasons:");
+                System.out.println("Input file does not have exact 52 cards OR One/More card values in input file not valid");
+                System.out.println("Initializing deck of cards within program");
             }
         } catch (IOException ioException) {
-            System.out.println("Exception while reading input file " + ioException.getMessage());
+            System.out.println("Exception while reading input file " + ioException +"\n");
         } catch (Exception exception) {
-            System.out.println("Exception while processing input file " + exception.getMessage());
+            System.out.println("Exception while processing input file " + exception+"\n");
         }
         return cardDeck;
     }
 
     public static void calculateHandValue(Player player) {
         int totalHandValue = 0;
+        if (player.getPlayerHand() == null) return;
         for (String card : player.getPlayerHand()) {
             totalHandValue += CARD_FACE_VALUE_MAP.get(card.substring(1));
         }
@@ -51,10 +55,11 @@ public class Utilities {
     }
 
     public static void printGameResult(Player sam, Player dealer) {
+        System.out.println("Printing game result below : \n");
         String winnerName = (sam.isWinner()) ? sam.getPlayerName() : dealer.getPlayerName();
         System.out.println(winnerName);
-        System.out.println(sam.getPlayerName() + ": " + sam.getPlayerHand());
-        System.out.println(dealer.getPlayerName() + ": " + dealer.getPlayerHand());
+        System.out.println(sam.getPlayerName() + ": " + String.join(", ", sam.getPlayerHand()));
+        System.out.println(dealer.getPlayerName() + ": " + String.join(", ", dealer.getPlayerHand()));
     }
 
     public static ArrayDeque<String> createDeckFromCardString(String cardsList){
