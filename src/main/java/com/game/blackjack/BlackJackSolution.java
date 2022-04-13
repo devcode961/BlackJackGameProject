@@ -3,16 +3,15 @@ package com.game.blackjack;
 import com.game.blackjack.game.BlackJackGame;
 import com.game.blackjack.model.Deck;
 import com.game.blackjack.model.Player;
+import com.game.blackjack.utils.Utilities;
 
 import java.util.ArrayDeque;
-import java.util.LinkedHashSet;
-import java.util.Set;
+
 
 public class BlackJackSolution
 {
     public static void main( String[] args )
     {
-
         ArrayDeque<String> cardDeck = new ArrayDeque<>();
 
         if(args.length > 0){
@@ -30,7 +29,9 @@ public class BlackJackSolution
         Player player2 = new Player();
         player1.setPlayerName("Sam");
         player2.setPlayerName("Dealer");
+
         BlackJackGame game = new BlackJackGame();
+
         game.playBlackJack(deck.getDeck(), player1, player2);
 
         Utilities.printGameResult(player1, player2);

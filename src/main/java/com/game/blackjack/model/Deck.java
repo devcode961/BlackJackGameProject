@@ -1,12 +1,13 @@
 package com.game.blackjack.model;
 
-import com.game.blackjack.Utilities;
+
 import java.util.ArrayDeque;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 import java.util.Collections;
 
+import static com.game.blackjack.constants.GameConstants.CARD_FACE_VALUE_MAP;
+import static com.game.blackjack.constants.GameConstants.SUITE_LIST;
 
 
 public class Deck {
@@ -25,14 +26,10 @@ public class Deck {
 
         List<String> cardList = new ArrayList<>();
 
-        Set<String> cardFaceValueSet = Utilities.cardFaceValueMap.keySet();
-
-        List<String> suiteList = Utilities.suiteList;
-
         StringBuilder cardEntry = new StringBuilder();
 
-        for(String suite : suiteList) {
-            for(String faceValue : cardFaceValueSet) {
+        for(String suite : SUITE_LIST) {
+            for(String faceValue : CARD_FACE_VALUE_MAP.keySet()) {
                 cardEntry.append(suite).append(faceValue);
                 cardList.add(cardEntry.toString());
                 cardEntry.setLength(0);
@@ -40,7 +37,7 @@ public class Deck {
         }
 
         Collections.shuffle(cardList);
-        System.out.println("Initialized deck of cards from program: "+cardList);
+        System.out.println("Initialized deck of cards within program: \n CARD DECK : "+cardList);
         this.deck.addAll(cardList);
     }
 

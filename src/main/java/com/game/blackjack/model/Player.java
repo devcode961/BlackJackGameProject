@@ -7,13 +7,11 @@ public class Player {
 
     private String playerName;
 
-    private List<String> playerHand = new ArrayList<String>();
+    private List<String> playerHand = new ArrayList<>();
 
     private int currentHandValue;
 
     private boolean isWinner;
-
-    private boolean isLoser;
 
     public String getPlayerName() {
         return playerName;
@@ -46,10 +44,6 @@ public class Player {
     public void setWinner(boolean winner) {
         isWinner = winner;
     }
-
-    public boolean isLoser() { return isLoser; }
-
-    public void setLoser(boolean loser) { isLoser = loser; }
 
     @Override
     public String toString() {
